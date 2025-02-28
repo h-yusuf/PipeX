@@ -1,0 +1,19 @@
+{
+    "name": "Maintenance Plan",
+    "short_name": "Maintenance",
+    "start_url": "/",
+    "display": "standalone",
+    "description": "Maintenance scheduling application",
+    "icons": [
+        {
+            "src": "/icons/icon-app-192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/icons/icon-app-192.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}

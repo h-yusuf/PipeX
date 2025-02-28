@@ -1,0 +1,16 @@
+.step,
+.step-summary {
+    display: none;
+}
+
+.step.active,
+.step-summary.active {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.step.md-height,
+.step-summary.md-height {
+    min-height: 66vh;
+}

@@ -1,0 +1,47 @@
+12 november 2024
+
+id mesin menggunakan nama pm nya
+
+1 : pm_1
+3 : pm_3
+6 : pm_6
+ 
+employee input after approved
+
+remarsk view in achievment
+
+//auto schedule job
+
+- jika berada pada bulan january maka cronjob mengambil dari data master schedule
+- jika february < maka schedule mengambil dari actual master schedule bulan sebelumnya
+- ambil berdasarkan week 
+- satu bulan harus 4 week jika di awal atau akhir terdapat lebih maka di ikutkan week bulan selepas atau sebelumnya
+- 
+
+
+saya punya case untuk membuat breakedown schedule,
+yang mana breakedown nya tiap hari jumat untuk menjadwalkan PM satu pekan kedepan , 
+mulai senin sampai jumat, namun ada beberapa kendala jika saya menggunakan cronjob untuk breakedown nya, 
+ketika di bulan januari masih aman breakedown dari masterschedule, 
+namun ketika sudah masuk ke bulan berikutnya jadwal di ambil dari actaul schedule, 
+yang mana actual di hasilkan dari shcedule bulan january yang sudah di kerjakan, 
+karena ada kemungkinan jadwal tidak sesuai master schedulenya karena problem pendingan dari atasan dsbg, 
+sehingga actual bisajadi berubah,kendalanya adalah ketika merilis jadwal untuk bulan berikutnya tidak konsisten, 
+karena tanggal tidak mesti jatuh di pekan yang sama misal pada schedule master sudah pasti tanggal nya sesuai, 
+schedule master ada datanya buat setahun master, namun master hanya berjalan di bulan january karena kemungkinan besar perubahan pada actualnya,misal pada january tgl 1 jatuh di pekan 1 hari selasa, 
+namun tgl satu di bulan february jatuh di hari sabtu sehingga pekan pertama waktu kerja di mulai tgl 3 dan cronjob di jalankan di bulan january akhir untuk merilis jadwal february, itu sangat tidak efisien, 
+apakah ada cara yang efisien untuk menangani case tersebut? apakah bisa jika schedule di rilis week" an saja tanpa menghiraukan bulan? satu bulan harus 4 week
+
+
+
+-- Rabu 11 desember 2024
+
+~ jika schedule bertabrakan di jam istirahat maka schedule + durasi istirahat yang ada
+~ validasi jika terjadi bentrok jadwal 
+
+
+key open ai 
+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
+
+~ huging face ai key
+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
