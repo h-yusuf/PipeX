@@ -68,7 +68,6 @@ class PermissionTableSeeder extends Seeder
                 'name' => 'role_show',
             ],
 
-
             // permission permissions
 
             [
@@ -88,6 +87,17 @@ class PermissionTableSeeder extends Seeder
                 'name' => 'permission_create',
             ],
 
+            [
+                'name' => 'product_management',
+            ],
+
+            [
+                'name' => 'wo_management',
+            ],
+
+            [
+                'name' => 'operator_management',
+            ],
 
         ];
 

@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use DowntimeSeeder;
 use Illuminate\Database\Seeder;
-use ScheduleMaintenanceSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -20,7 +19,8 @@ class DatabaseSeeder extends Seeder
             PermissionTableSeeder::class,
             RolePermissionTableSeeder::class,
             UsersTableSeeder::class,
-            EmployeeTableSeeder::class
+            EmployeeTableSeeder::class,
+            ProductSeeder::class,
         ]);
     }
 }

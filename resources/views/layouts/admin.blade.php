@@ -7,7 +7,7 @@
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noindex,nofollow">
-    <title>{{ $title ?? 'Maintenance Manager' }}</title>
+    <title>{{ $title ?? 'PIPX' }}</title>
     <!-- Favicon icon -->
     <link rel="icon" href="{{ asset('icons/mtc.png') }}">
 
@@ -36,18 +36,6 @@
             margin: 2.5px;
         }
     </style>
-    <link rel="manifest" href="{{ asset('manifest.json') }}">
-    <script>
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', function () {
-                navigator.serviceWorker.register('{{ asset('serviceworker.js') }}').then(function (registration) {
-                    console.log('ServiceWorker registration successful with scope: ', registration.scope);
-                }, function (err) {
-                    console.log('ServiceWorker registration failed: ', err);
-                });
-            });
-        }
-    </script>
 
 
     @yield('styles')

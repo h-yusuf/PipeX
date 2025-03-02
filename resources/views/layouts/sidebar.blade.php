@@ -53,7 +53,7 @@
                 </li>
             @endcan
 
-            
+
             <li class="nav-item pcoded-menu-caption">
                 <label>Management</label>
             </li>
@@ -80,33 +80,33 @@
                 </li>
             @endcanany
 
-            @canany('engine_table_master', 'sparepart_table_master')
+            @canany('product_management')
                 <li class="nav-item pcoded-hasmenu">
                     <a href="#!" class="nav-link">
                         <span class="pcoded-micon"><i class="fas fa-database"></i></span>
                         <span class="pcoded-mtext">Data Master</span>
                     </a>
                     <ul class="pcoded-submenu">
-                        @can('engine_table_master')
-                            <li><a href="">Part Number</a></li>
+                        @can('product_management')
+                            <li><a href="{{ route('admin.products.index') }}">Product Management</a></li>
                         @endcan
                     </ul>
                 </li>
             @endcanany
 
-            @canany(['planning_tim_approval_access', 'preventive_approval_access', 'corrective_approval_access'])
+            @canany(['wo_management', 'operator_management'])
                 <li class="nav-item pcoded-hasmenu">
                     <a href="#!" class="nav-link">
                         <span class="pcoded-micon"><i class="fas fa-file-signature"></i></span>
                         <span class="pcoded-mtext">WO Management</span>
                     </a>
                     <ul class="pcoded-submenu">
-                        @can('corrective_approval_access')
-                            <li><a href="{{ route('admin.corrective_approval') }}">Work Order Management</a></li>
+                        @can('wo_management')
+                            <li><a href="">Work Order Management</a></li>
                         @endcan
 
-                        @can('planning_tim_approval_access')
-                            <li><a href="{{ route('admin.approval.planning') }}">Operator Management</a></li>
+                        @can('operator_management')
+                            <li><a href="">Operator Management</a></li>
                         @endcan
 
                     </ul>

@@ -20,10 +20,10 @@
             </li>
         </ul>
         <ul class="navbar-nav ml-auto">
-            
+
             <li class="nav-item">
                 <span id="realtime-clock" style="font-size: 1.2rem; font-weight: 700;"
-                class="nav-link text-white"></span>
+                    class="nav-link text-white"></span>
             </li>
             <li class="nav-item">
                 <span style="font-size: 1.1rem; font-weight: 500;" class="nav-link text-white">
@@ -33,8 +33,7 @@
             <li>
                 <a id="notification-box-trigger"
                     class="notification-box position-relative d-flex align-items-center justify-content-center p-3 rounded-circle mt-2"
-                    style=""
-                    href="#">
+                    style="" href="#">
                     <i class="fa fa-bell fa-lg"></i>
                     <span id="notification-dot"
                         class="position-absolute mt-3 start-100 translate-middle p-1 bg-danger border border-light rounded-circle"
@@ -61,7 +60,7 @@
 
     document.getElementById('notification-box-trigger').addEventListener('click', function () {
         notificationSeen = true;
-        $('#notification-dot').hide(); 
+        $('#notification-dot').hide();
         console.log('Notifikasi telah dilihat');
     });
 </script>

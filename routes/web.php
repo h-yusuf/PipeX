@@ -1,18 +1,7 @@
 <?php
 
-use App\Http\Controllers\Admin\ApprovalController;
-use App\Http\Controllers\Admin\ChecksheetController;
-use App\Http\Controllers\Admin\DowntimeController;
-use App\Http\Controllers\Admin\DurationController;
-use App\Http\Controllers\Admin\HistoriesController;
-use App\Http\Controllers\Admin\MasterDataProblemController;
-use App\Http\Controllers\Admin\PhoneNumberController;
-use App\Http\Controllers\Admin\ScheduleController;
-use App\Http\Controllers\Admin\Tables\EngineMasterController;
-use App\Http\Controllers\Admin\Tables\SparepartController;
-use App\Http\Controllers\Admin\AchievementController;
-use App\Http\Controllers\api\apiGateway;
-use App\Http\Controllers\api\HugingFaceAicheduleAdvisorController;
+
+use App\Http\Controllers\Admin\ManagementProductController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -41,7 +30,14 @@ Route::group(['prefix' => "admin", 'as' => 'admin.', 'namespace' => 'App\Http\Co
     Route::resource('/users', 'UserController');
     Route::resource('/roles', 'RoleController');
     Route::resource('/permissions', 'PermissionController')->except(['show']);
+   
+    Route::resource('/products', 'ManagementProductController');
 
+    Route::get('/product', [ManagementProductController::class, 'index'])->name('product');
+    Route::post('/product/store', [ManagementProductController::class, 'store'])->name('product.store');
+    Route::get('/product/{id}/edit', [ManagementProductController::class, 'edit'])->name('product.edit');
+    Route::put('/product/{id}/update', [ManagementProductController::class, 'update'])->name('product.update');
+    Route::delete('/product/destroy/{id}', [ManagementProductController::class, 'destroy'])->name('product.destroy');
 
 
 });
