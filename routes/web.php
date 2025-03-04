@@ -2,6 +2,7 @@
 
 
 use App\Http\Controllers\Admin\ManagementProductController;
+use App\Http\Controllers\Admin\WorkOrderController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -33,12 +34,21 @@ Route::group(['prefix' => "admin", 'as' => 'admin.', 'namespace' => 'App\Http\Co
    
     Route::resource('/products', 'ManagementProductController');
 
+    // product start
     Route::get('/product', [ManagementProductController::class, 'index'])->name('product');
     Route::post('/product/store', [ManagementProductController::class, 'store'])->name('product.store');
     Route::get('/product/{id}/edit', [ManagementProductController::class, 'edit'])->name('product.edit');
     Route::put('/product/{id}/update', [ManagementProductController::class, 'update'])->name('product.update');
     Route::delete('/product/destroy/{id}', [ManagementProductController::class, 'destroy'])->name('product.destroy');
+    // product end
 
+    // workorder start
+    Route::get('/workorder', [WorkOrderController::class, 'index'])->name('workorder');
+    Route::post('/workorder/store', [WorkOrderController::class, 'store'])->name('workorder.store');
+    Route::get('/workorder/{id}/edit', [WorkOrderController::class, 'edit'])->name('workorder.edit');
+    Route::put('/workorder/{id}/update', [WorkOrderController::class, 'update'])->name('workorder.update');
+    Route::delete('/workorder/destroy/{id}', [WorkOrderController::class, 'destroy'])->name('workorder.destroy');
+    // workorder end
 
 });
 

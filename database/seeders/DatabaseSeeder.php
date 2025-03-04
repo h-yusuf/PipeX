@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
             UsersTableSeeder::class,
             EmployeeTableSeeder::class,
             ProductSeeder::class,
+            WorkOrderSeeder::class,
         ]);
     }
 }

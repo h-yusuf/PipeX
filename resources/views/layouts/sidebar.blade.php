@@ -102,11 +102,11 @@
                     </a>
                     <ul class="pcoded-submenu">
                         @can('wo_management')
-                            <li><a href="">Work Order Management</a></li>
+                            <li><a href="{{ route('admin.workorder') }}">Work Order Management</a></li>
                         @endcan
 
                         @can('operator_management')
-                            <li><a href="">Operator Management</a></li>
+                            <li><a href="{{ route('admin.workorder') }}">Operator Management</a></li>
                         @endcan
 
                     </ul>

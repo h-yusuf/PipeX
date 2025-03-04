@@ -23,7 +23,8 @@
         "spatie/laravel-activitylog": "^4.8",
         "tecnickcom/tcpdf": "^6.7",
         "tightenco/ziggy": "^1.8",
-        "yajra/laravel-datatables": "^1.5"
+        "yajra/laravel-datatables": "^1.5",
+        "yajra/laravel-datatables-oracle": "^9.21"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

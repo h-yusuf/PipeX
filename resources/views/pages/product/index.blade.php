@@ -27,8 +27,9 @@
 
             <div class="card-header">
                 <h5>Product Management</h5>
-                <span class="d-block m-t-5">Displays the history of checksheets from completed preventive maintenance
-                    tasks, including inspection results and actions taken.</span>
+                <span class="d-block m-t-5">Manage product lists easily, including adding, editing, and deleting
+                    products along with related information such as product number, name, material, unit, price, and
+                    status.</span>
                 <button id="addProductButton" class="btn btn-info float-left mt-2" data-toggle="modal"
                     data-target="#productModal"">Add Product</button>
             </div>
