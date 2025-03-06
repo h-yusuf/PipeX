@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\WoManagementModel;
+use App\Models\WorkOrderProgressLog;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class OperatorWorkOrderController extends Controller
@@ -15,7 +17,7 @@ class OperatorWorkOrderController extends Controller
             // echo json_encode($operator);
             $status = $request->query('status');
             $query = WoManagementModel::where('operator_id', $operator->id)
-                ->with('product')
+                ->with(['product','progressLogs'])
                 ->orderBy('updated_at', 'desc');
 
             if ($status) {
@@ -55,10 +57,10 @@ class OperatorWorkOrderController extends Controller
 
 
 
-    // echo json_encode($request->all());exit;
     public function update(Request $request, $id)
     {
         try {
+            // echo json_encode($request->all());exit;
             $validated = $request->validate([
                 'status' => 'required|in:Pending,In Progress,Completed,Canceled',
             ]);
@@ -94,6 +96,7 @@ class OperatorWorkOrderController extends Controller
     public function updateQty(Request $request, $id)
     {
         try {
+            // echo json_encode($request->all());exit;
             $validated = $request->validate([
                 'qty_progress' => 'required|integer|min:0',
             ]);
@@ -122,5 +125,51 @@ class OperatorWorkOrderController extends Controller
             ], 500);
         }
     }
+    public function storeProgress(Request $request, $id)
+    {
+        $workOrder = WoManagementModel::findOrFail($id);
+    
+        $validated = $request->validate([
+            'deskripsi' => 'required|string',
+        ]);
+    
+        $now = Carbon::now();
+    
+        $lastProgress = WorkOrderProgressLog::where('work_order_id', $workOrder->id)
+            ->whereNull('end_time')
+            ->latest('start_time')
+            ->first();
+    
+        if ($lastProgress) {
+            $startTime = Carbon::parse($lastProgress->start_time); // 🔥 Fix di sini
+            $lastProgress->end_time = $now;
+            $lastProgress->duration = $startTime->diffInMinutes($now);
+            $lastProgress->save();
+        }
+    
+        WorkOrderProgressLog::create([
+            'work_order_id' => $workOrder->id,
+            'operator_id' => $workOrder->operator_id,
+            'status' => $workOrder->status,
+            'description' => $validated['deskripsi'],
+            'start_time' => $now,
+        ]);
+    
+        if ($workOrder->status === 'Completed') {
+            $currentProgress = WorkOrderProgressLog::where('work_order_id', $workOrder->id)
+                ->latest('start_time')
+                ->first();
+    
+            if ($currentProgress && !$currentProgress->end_time) {
+                $currentProgress->end_time = $now;
+                $currentProgress->duration = 0; 
+                $currentProgress->save();
+            }
+        }
+    
+        return response()->json(['success' => true, 'message' => 'Progress saved successfully!']);
+    }
+    
+    
 
 }

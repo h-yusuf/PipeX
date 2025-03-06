@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class WoManagementModel extends Model
 {
     use HasFactory;
-    
+
     protected $table = 'work_orders';
-    
+
     protected $fillable = [
         'work_order_number',
         'product_id',
@@ -31,4 +31,9 @@ class WoManagementModel extends Model
     {
         return $this->belongsTo(ProductModel::class, 'product_id');
     }
+    public function progressLogs()
+    {
+        return $this->hasMany(WorkOrderProgressLog::class, 'work_order_id');
+    }
+
 }

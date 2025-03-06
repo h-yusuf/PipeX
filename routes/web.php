@@ -64,6 +64,7 @@ Route::group(['namespace' => 'App\Http\Controllers\Admin', 'middleware' => ['aut
     Route::get('/api-workorder/{id}', [OperatorWorkOrderController::class, 'show']);
     Route::put('/api-workorder/{id}/update', [OperatorWorkOrderController::class, 'update']);
     Route::put('/api-workorder/{id}/update-qty', [OperatorWorkOrderController::class, 'updateQty']);
+    Route::put('/api-workorder/{id}/progress', [OperatorWorkOrderController::class, 'storeProgress']);
 
 });
 // operator end
