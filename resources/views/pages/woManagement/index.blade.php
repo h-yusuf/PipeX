@@ -50,6 +50,7 @@
                             <th>Due Date</th>
                             <th>Status</th>
                             <th>Operator</th>
+                            <th>Progress</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -142,6 +143,24 @@
         </div>
     </div>
 </div>
+
+<!-- Modal for Show Progress -->
+<div class="modal fade" id="showProgressModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Work Order Progress</h5>
+                <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <div id="progressContent">
+                    <p class="text-center">Loading progress...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 @section('scripts')
     @include('pages.woManagement.js')

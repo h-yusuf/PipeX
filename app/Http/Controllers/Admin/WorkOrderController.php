@@ -36,16 +36,36 @@ class WorkOrderController extends Controller
                 ->addColumn('operator', function ($row) {
                     return $row->operator->name;
                 })
+                ->addColumn('progress', function ($row) {
+                    $latestProgress = $row->progressLogs->last(); 
+                    $description = $latestProgress ? $latestProgress->description : '-';
+                
+                    return '
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="text-truncate">' . $description . '</span>
+                            <button type="button" class="btn btn-sm btn-secondary btn-show-progress ml-2" 
+                                data-toggle="modal" 
+                                data-target="#showProgressModal" 
+                                data-id="' . $row->id . '">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    ';
+                })                     
                 ->addColumn('status', function ($row) {
                     $badgeClass = $row->status == 'Completed' ? 'badge-success' : 'badge-warning';
-                    return '<span class="badge ' . $badgeClass . '">' . ucfirst($row->status) . '</span>';
+                    return '<span class="badge' . $badgeClass . '">' . ucfirst($row->status) . '</span>';
                 })
                 ->addColumn('actions', function ($row) {
-                    $editBtn = '<button class="btn btn-warning btn-sm btn-edit" data-id="' . $row->id . '" data-toggle="modal" data-target="#updateWorkOrderModal"><i class="fas fa-edit"></i></button>';
-                    $deleteForm = '<button type="button" class="btn btn-sm btn-danger btn-delete" data-id="' . $row->id . '"><i class="fas fa-trash"></i></button>';
-                    return $editBtn . ' ' . $deleteForm;
-                })
-                ->rawColumns(['status', 'actions'])
+                    if ($row->status !== 'Completed') {
+                        $editBtn = '<button class="btn btn-warning btn-sm btn-edit" data-id="' . $row->id . '" data-toggle="modal" data-target="#updateWorkOrderModal"><i class="fas fa-edit"></i></button>';
+                        $deleteBtn = '<button type="button" class="btn btn-sm btn-danger btn-delete" data-id="' . $row->id . '"><i class="fas fa-trash"></i></button>';
+                        return $editBtn . ' ' . $deleteBtn;
+                    } else {
+                        return '<span class="text-muted">No Action</span>';
+                    }
+                })                
+                ->rawColumns(['status', 'actions', 'progress'])
                 ->make(true);
         }
 

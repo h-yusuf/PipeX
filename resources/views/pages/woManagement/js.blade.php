@@ -19,6 +19,7 @@
                 { data: 'due_date', name: 'due_date' },
                 { data: 'status', name: 'status', orderable: false, searchable: false },
                 { data: 'operator', name: 'operator.name' },
+                { data: 'progress', name: 'progress', orderable: false, searchable: false },
                 { data: 'actions', name: 'actions', orderable: false, searchable: false }
             ]
         });
@@ -93,7 +94,7 @@
 
         $.get("{{ route('admin.workorder.edit', ':id') }}".replace(':id', id), function (data) {
             console.log(data);
-            
+
             $('#updateWorkOrderModal #operator_id').val(data.operator_id);
             $('#updateWorkOrderModal #status').val(data.status);
 
@@ -169,6 +170,74 @@
             }
         });
     });
+
+    $(document).on('click', '.btn-show-progress', function() {
+    var workOrderId = $(this).data('id');
+    $('#showProgressModal').modal('show');
+    $('#progressContent').html('<p class="text-center">Loading progress...</p>');
+
+    $.ajax({
+        url: '/api/progress/' + workOrderId,
+        type: 'GET',
+        success: function(response) {
+            if (response.success) {
+                var progressLogs = response.data;
+                var contentHtml = `
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Operator</th>
+                                    <th>Status</th>
+                                    <th>Description</th>
+                                    <th>Start Time</th>
+                                    <th>End Time</th>
+                                    <th>Duration</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                `;
+
+                $.each(progressLogs, function(index, log) {
+                    contentHtml += `
+                        <tr>
+                            <td>${index + 1}</td>
+                            <td>${log.operator ? log.operator.name : '-'}</td>
+                            <td>${log.status}</td>
+                            <td>${log.description}</td>
+                            <td>${log.start_time ? moment(log.start_time).format('DD-MM-YYYY HH:mm') : '-'}</td>
+                            <td>${log.end_time ? moment(log.end_time).format('DD-MM-YYYY HH:mm') : '-'}</td>
+                            <td>${log.duration ? log.duration + ' mins' : '-'}</td>
+                        </tr>
+                    `;
+                });
+
+                contentHtml += `
+                            </tbody>
+                        </table>
+                    </div>
+                `;
+
+                $('#progressContent').html(contentHtml);
+            } else {
+                $('#progressContent').html(`
+                    <div class="alert alert-warning text-center">
+                        ${response.message}
+                    </div>
+                `);
+            }
+        },
+        error: function() {
+            $('#progressContent').html(`
+                <div class="alert alert-danger text-center">
+                    Failed to load progress. Please try again later.
+                </div>
+            `);
+        }
+    });
+});
+
 
 
 </script>
