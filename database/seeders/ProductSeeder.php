@@ -11,7 +11,7 @@ class ProductSeeder extends Seeder
     {
         DB::table('products')->insert([
             [
-                'product_number' => 'ELB90',
+                'product_number' => 'PN-202503061740275797',
                 'product_name' => 'Elbow 90°',
                 'material' => 'Besi Mampu Tempa',
                 'description' => 'Sambungan pipa dengan sudut 90° untuk perubahan arah aliran.',
@@ -22,7 +22,7 @@ class ProductSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'product_number' => 'TEE',
+                'product_number' => 'PN-202503061742238065',
                 'product_name' => 'Tee',
                 'material' => 'Besi Mampu Tempa',
                 'description' => 'Sambungan pipa berbentuk T untuk percabangan aliran.',
@@ -33,7 +33,7 @@ class ProductSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'product_number' => 'REDTEE',
+                'product_number' => 'PN-202503061742476732',
                 'product_name' => 'Reducing Tee',
                 'material' => 'Besi Mampu Tempa',
                 'description' => 'Tee dengan ukuran cabang yang lebih kecil untuk mengurangi aliran.',
@@ -44,7 +44,7 @@ class ProductSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'product_number' => 'CAP',
+                'product_number' => 'PN-202503061743143237',
                 'product_name' => 'Cap',
                 'material' => 'Besi Mampu Tempa',
                 'description' => 'Penutup ujung pipa untuk menghentikan aliran.',
@@ -55,7 +55,7 @@ class ProductSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'product_number' => 'BUSH',
+                'product_number' => 'PN-202503061743331141',
                 'product_name' => 'Bushing',
                 'material' => 'Besi Mampu Tempa',
                 'description' => 'Adaptor untuk menghubungkan pipa dengan diameter berbeda.',
@@ -66,7 +66,7 @@ class ProductSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'product_number' => 'NIP',
+                'product_number' => 'PN-202503061743333287',
                 'product_name' => 'Nipple',
                 'material' => 'Besi Mampu Tempa',
                 'description' => 'Pipa pendek berulir untuk menyambungkan dua fitting.',
@@ -77,7 +77,7 @@ class ProductSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'product_number' => 'LOCKNUT',
+                'product_number' => 'PN-202503061743389123',
                 'product_name' => 'Locknut',
                 'material' => 'Besi Mampu Tempa',
                 'description' => 'Mur pengunci untuk mengamankan fitting pada tempatnya.',
@@ -88,7 +88,7 @@ class ProductSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'product_number' => 'PLUG',
+                'product_number' => 'PN-202503061743398765',
                 'product_name' => 'Plug',
                 'material' => 'Besi Mampu Tempa',
                 'description' => 'Penyumbat ujung pipa atau lubang pada fitting.',
@@ -99,7 +99,7 @@ class ProductSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'product_number' => 'FLFLG',
+                'product_number' => 'PN-202503061743328365',
                 'product_name' => 'Floor Flange',
                 'material' => 'Besi Mampu Tempa',
                 'description' => 'Flange untuk menghubungkan pipa ke lantai atau permukaan datar.',
@@ -110,7 +110,7 @@ class ProductSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'product_number' => 'UNION',
+                'product_number' => 'PN-202503061743098728',
                 'product_name' => 'Union',
                 'material' => 'Besi Mampu Tempa',
                 'description' => 'Sambungan pipa yang dapat dilepas tanpa memutar pipa.',

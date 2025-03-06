@@ -74,3 +74,90 @@ bisa login by email atau username atau NPK
 
 Selamat menggunakan aplikasi Work Order Management System! 🚀
 
+
+# 📄 PipeX Management Documentation
+
+**PipeX Management** adalah sistem manajemen Work Order (WO) yang digunakan untuk mempermudah pengelolaan proses produksi, mulai dari pengaturan pengguna, operator, produk, hingga monitoring dan laporan Work Order.
+
+---
+
+## 🚀 Fitur-Fitur Utama
+
+### 👤 User Management  
+Mengelola data user yang memiliki akses ke sistem dengan berbagai peran dan tanggung jawab.
+
+![User Management](readme/users_management.png)
+
+---
+
+### 👥 Operator Management  
+Mengelola data operator yang bertanggung jawab menjalankan Work Order.
+
+![Operator Management](readme/operator.png)
+
+---
+
+### 🔐 Role & Permission Management  
+Mengelola hak akses dan izin pengguna dalam sistem sesuai kebutuhan operasional.
+
+- **Role Management**  
+  ![Role Management](readme/role_management.png)
+
+- **Tambah Role**  
+  ![Tambah Role](readme/role_add.png)
+
+- **Permission Management**  
+  ![Permission Management](readme/permission_management.png)
+
+---
+
+### 📦 Product Management  
+Mengelola data produk yang terlibat dalam proses produksi Work Order.
+
+- **Daftar Produk**  
+  ![Product Management](readme/product_management.png)
+
+- **Tambah Produk**  
+  ![Tambah Produk](readme/product_management_add.png)
+
+- **Update Produk**  
+  ![Update Produk](readme/product_management_update.png)
+
+---
+
+### 📝 Work Order (WO) Management  
+Mengelola proses Work Order mulai dari input, update, monitoring hingga laporan.
+
+- **Daftar Work Order**  
+  ![Work Order Management](readme/wo_management.png)
+
+- **Tambah Work Order**  
+  ![Tambah Work Order](readme/wo_management_add.png)
+
+- **Update Work Order**  
+  ![Update Work Order](readme/wo_management_update.png)
+
+- **Hapus Work Order**  
+  ![Hapus Work Order](readme/wo_management_delete.png)
+
+- **Progress Work Order**  
+  ![Progress Work Order](readme/wo_management_progress.png)
+
+- **Laporan Work Order**  
+  ![Laporan Work Order](readme/wo_management_report.png)
+
+---
+
+### 🎥 Demo Penggunaan  
+Cuplikan penggunaan PipeX Management dalam format video.
+
+![Operator Demo](readme/operator.webm)
+
+---
+
+## 📌 Catatan
+- Semua fitur dikelola via platform berbasis web.
+- Pastikan user memiliki role dan permission yang sesuai untuk mengakses setiap modul.
+- Dokumentasi ini dapat diperbarui seiring dengan pengembangan fitur selanjutnya.
+
+---

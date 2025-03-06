@@ -78,7 +78,7 @@
                     <label>Product</label>
                     <select id="product_id" name="product_id" class="form-control" required>
                         @foreach ($products as $product)
-                            <option value="{{ $product->id }}">{{ $product->product_name }}</option>
+                            <option value="{{ $product->id }}">{{ $product->product_number }} - {{ $product->product_name }}</option>
                         @endforeach
                     </select>
 
@@ -99,7 +99,7 @@
                     <label>Operator</label>
                     <select id="operator_id" name="operator_id" class="form-control" required>
                         @foreach ($operators as $operator)
-                            <option value="{{ $operator->id }}">{{ $operator->name }}</option>
+                            <option value="{{ $operator->id }}">{{ $operator->name }} - {{ $operator->username }}</option>
                         @endforeach
                     </select>
 

@@ -34,8 +34,9 @@ class WorkOrderController extends Controller
                     return $row->product->product_number . ' - ' . $row->product->product_name;
                 })
                 ->addColumn('operator', function ($row) {
-                    return $row->operator->name;
+                    return $row->operator ? $row->operator->name . ' - ' . $row->operator->username : '-';
                 })
+                
                 ->addColumn('progress', function ($row) {
                     $latestProgress = $row->progressLogs->last(); 
                     $description = $latestProgress ? $latestProgress->description : '-';
@@ -53,9 +54,26 @@ class WorkOrderController extends Controller
                     ';
                 })                     
                 ->addColumn('status', function ($row) {
-                    $badgeClass = $row->status == 'Completed' ? 'badge-success' : 'badge-warning';
-                    return '<span class="badge' . $badgeClass . '">' . ucfirst($row->status) . '</span>';
+                    switch ($row->status) {
+                        case 'Completed':
+                            $badgeClass = 'badge-success'; // Hijau
+                            break;
+                        case 'Canceled':
+                            $badgeClass = 'badge-danger'; // Merah
+                            break;
+                        case 'Pending':
+                            $badgeClass = 'badge-warning'; // Kuning
+                            break;
+                        case 'In Progress':
+                            $badgeClass = 'badge-info'; // Biru
+                            break;
+                        default:
+                            $badgeClass = 'badge-secondary'; // Abu-abu untuk status lain
+                    }
+                
+                    return '<span class="badge badge-custom ' . $badgeClass . '">' . ucfirst($row->status) . '</span>';
                 })
+                
                 ->addColumn('actions', function ($row) {
                     if ($row->status !== 'Completed') {
                         $editBtn = '<button class="btn btn-warning btn-sm btn-edit" data-id="' . $row->id . '" data-toggle="modal" data-target="#updateWorkOrderModal"><i class="fas fa-edit"></i></button>';
