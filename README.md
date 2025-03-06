@@ -86,14 +86,14 @@ Selamat menggunakan aplikasi Work Order Management System! 🚀
 ### 👤 User Management  
 Mengelola data user yang memiliki akses ke sistem dengan berbagai peran dan tanggung jawab.
 
-![User Management](readme/users_management.png)
+![User Management](public/readme/users_management.png)
 
 ---
 
 ### 👥 Operator Management  
 Mengelola data operator yang bertanggung jawab menjalankan Work Order.
 
-![Operator Management](readme/operator.png)
+![Operator Management](public/readme/operator.png)
 
 ---
 
@@ -101,13 +101,13 @@ Mengelola data operator yang bertanggung jawab menjalankan Work Order.
 Mengelola hak akses dan izin pengguna dalam sistem sesuai kebutuhan operasional.
 
 - **Role Management**  
-  ![Role Management](readme/role_management.png)
+  ![Role Management](public/readme/role_management.png)
 
 - **Tambah Role**  
-  ![Tambah Role](readme/role_add.png)
+  ![Tambah Role](public/readme/role_add.png)
 
 - **Permission Management**  
-  ![Permission Management](readme/permission_management.png)
+  ![Permission Management](public/readme/permission_management.png)
 
 ---
 
@@ -115,13 +115,13 @@ Mengelola hak akses dan izin pengguna dalam sistem sesuai kebutuhan operasional.
 Mengelola data produk yang terlibat dalam proses produksi Work Order.
 
 - **Daftar Produk**  
-  ![Product Management](readme/product_management.png)
+  ![Product Management](public/readme/product_management.png)
 
 - **Tambah Produk**  
-  ![Tambah Produk](readme/product_management_add.png)
+  ![Tambah Produk](public/readme/product_management_add.png)
 
 - **Update Produk**  
-  ![Update Produk](readme/product_management_update.png)
+  ![Update Produk](public/readme/product_management_update.png)
 
 ---
 
@@ -129,29 +129,29 @@ Mengelola data produk yang terlibat dalam proses produksi Work Order.
 Mengelola proses Work Order mulai dari input, update, monitoring hingga laporan.
 
 - **Daftar Work Order**  
-  ![Work Order Management](readme/wo_management.png)
+  ![Work Order Management](public/readme/wo_management.png)
 
 - **Tambah Work Order**  
-  ![Tambah Work Order](readme/wo_management_add.png)
+  ![Tambah Work Order](public/readme/wo_management_add.png)
 
 - **Update Work Order**  
-  ![Update Work Order](readme/wo_management_update.png)
+  ![Update Work Order](public/readme/wo_management_update.png)
 
 - **Hapus Work Order**  
-  ![Hapus Work Order](readme/wo_management_delete.png)
+  ![Hapus Work Order](public/readme/wo_management_delete.png)
 
 - **Progress Work Order**  
-  ![Progress Work Order](readme/wo_management_progress.png)
+  ![Progress Work Order](public/readme/wo_management_progress.png)
 
 - **Laporan Work Order**  
-  ![Laporan Work Order](readme/wo_management_report.png)
+  ![Laporan Work Order](public/readme/wo_management_report.png)
 
 ---
 
 ### 🎥 Demo Penggunaan  
 Cuplikan penggunaan PipeX Management dalam format video.
 
-![Operator Demo](readme/operator.webm)
+![Operator Demo](public/readme/operator.webm)
 
 ---
 
