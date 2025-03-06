@@ -88,7 +88,7 @@
                     </a>
                     <ul class="pcoded-submenu">
                         @can('product_management')
-                            <li><a href="{{ route('admin.products.index') }}">Product Management</a></li>
+                            <li><a href="{{ route('admin.product.index') }}">Product Management</a></li>
                         @endcan
                     </ul>
                 </li>
@@ -103,6 +103,9 @@
                     <ul class="pcoded-submenu">
                         @can('wo_management')
                             <li><a href="{{ route('admin.workorder') }}">Work Order Management</a></li>
+                        @endcan
+                        @can('wo_management')
+                            <li><a href="{{ route('admin.reportManagement') }}">Work Order Report</a></li>
                         @endcan
                     </ul>
                 </li>

@@ -12,18 +12,18 @@ class OperatorWorkOrderController extends Controller
     {
         try {
             $operator = auth()->user();
-             // echo json_encode($operator);
-            $status = $request->query('status'); 
+            // echo json_encode($operator);
+            $status = $request->query('status');
             $query = WoManagementModel::where('operator_id', $operator->id)
                 ->with('product')
                 ->orderBy('updated_at', 'desc');
-    
+
             if ($status) {
                 $query->where('status', $status);
             }
-    
+
             $workOrders = $query->get();
-    
+
             return response()->json([
                 'success' => true,
                 'data' => $workOrders,
@@ -35,8 +35,6 @@ class OperatorWorkOrderController extends Controller
             ], 500);
         }
     }
-    
-    
 
     public function show($id)
     {
@@ -57,7 +55,8 @@ class OperatorWorkOrderController extends Controller
 
 
 
-    public function     update(Request $request, $id)
+    // echo json_encode($request->all());exit;
+    public function update(Request $request, $id)
     {
         try {
             $validated = $request->validate([
@@ -65,19 +64,63 @@ class OperatorWorkOrderController extends Controller
             ]);
 
             $workOrder = WoManagementModel::findOrFail($id);
-            $workOrder->update([
+
+            $updateData = [
                 'status' => $validated['status'],
-            ]);
+            ];
+
+            if ($validated['status'] === 'In Progress' && !$workOrder->start_production) {
+                $updateData['start_production'] = now();
+            }
+
+            if ($validated['status'] === 'Completed' && !$workOrder->finish_production) {
+                $updateData['finish_production'] = now();
+            }
+
+            $workOrder->update($updateData);
 
             return response()->json([
                 'success' => true,
-                'message' => 'Work order updated successfully!',
+                'message' => 'Work order status updated!',
             ]);
         } catch (\Exception $e) {
             return response()->json([
                 'success' => false,
-                'message' => 'Failed to update work order: ' . $e->getMessage(),
+                'message' => 'Failed to update status: ' . $e->getMessage(),
             ], 500);
         }
     }
+
+    public function updateQty(Request $request, $id)
+    {
+        try {
+            $validated = $request->validate([
+                'qty_progress' => 'required|integer|min:0',
+            ]);
+
+            $workOrder = WoManagementModel::findOrFail($id);
+
+            if ($workOrder->status !== 'In Progress') {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Cannot update quantity. Work order is not in progress.',
+                ], 400);
+            }
+
+            $workOrder->update([
+                'qty_progress' => $validated['qty_progress'],
+            ]);
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Quantity progress updated!',
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Failed to update quantity: ' . $e->getMessage(),
+            ], 500);
+        }
+    }
+
 }

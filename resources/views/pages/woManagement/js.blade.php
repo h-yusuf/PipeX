@@ -24,7 +24,7 @@
         });
 
         // Reload table filter cuyy
-        $('form').on('submit', function (e) {
+        $('.form-ajax').on('submit', function (e) {
             e.preventDefault();
             table.ajax.reload();
         });

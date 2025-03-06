@@ -112,8 +112,6 @@ class WorkOrderController extends Controller
         }
     }
 
-
-
     public function edit($id)
     {
         $workOrder = WoManagementModel::with(['product', 'operator'])->findOrFail($id);
@@ -136,5 +134,11 @@ class WorkOrderController extends Controller
 
         $data = ProductModel::orderBy('updated_at', 'desc')->get();
         return view('pages.operator.index', compact('data'));
+    }
+    public function reportManagement()
+    {
+        abort_if(Gate::denies('wo_management'), Response::HTTP_FORBIDDEN, 'Forbidden');
+
+        return view('pages.report.index');
     }
 }

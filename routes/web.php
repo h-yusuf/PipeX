@@ -33,10 +33,10 @@ Route::group(['prefix' => "admin", 'as' => 'admin.', 'namespace' => 'App\Http\Co
     Route::resource('/roles', 'RoleController');
     Route::resource('/permissions', 'PermissionController')->except(['show']);
 
-    Route::resource('/products', 'ManagementProductController');
+    // Route::resource('/products', 'ManagementProductController');
 
     // product start
-    Route::get('/product', [ManagementProductController::class, 'index'])->name('product');
+    Route::get('/product', [ManagementProductController::class, 'index'])->name('product.index');
     Route::post('/product/store', [ManagementProductController::class, 'store'])->name('product.store');
     Route::get('/product/{id}/edit', [ManagementProductController::class, 'edit'])->name('product.edit');
     Route::put('/product/{id}/update', [ManagementProductController::class, 'update'])->name('product.update');
@@ -51,6 +51,10 @@ Route::group(['prefix' => "admin", 'as' => 'admin.', 'namespace' => 'App\Http\Co
     Route::delete('/workorder/destroy/{id}', [WorkOrderController::class, 'destroy'])->name('workorder.destroy');
     // workorder end
 
+    // reportManagement start
+    Route::get('/reportManagement', [WorkOrderController::class, 'reportManagement'])->name('reportManagement');
+    // reportManagement end
+
 });
 
 // operator start
@@ -58,7 +62,9 @@ Route::group(['namespace' => 'App\Http\Controllers\Admin', 'middleware' => ['aut
     Route::get('/operator', [WorkOrderController::class, 'operatorIndex'])->name('operator');
     Route::get('/api-workorders', [OperatorWorkOrderController::class, 'index']);
     Route::get('/api-workorder/{id}', [OperatorWorkOrderController::class, 'show']);
-    Route::put('/api-workorder/{id}', [OperatorWorkOrderController::class, 'update']);
+    Route::put('/api-workorder/{id}/update', [OperatorWorkOrderController::class, 'update']);
+    Route::put('/api-workorder/{id}/update-qty', [OperatorWorkOrderController::class, 'updateQty']);
+
 });
 // operator end
 

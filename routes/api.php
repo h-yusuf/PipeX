@@ -2,6 +2,7 @@
 
 
 use App\Http\Controllers\Api\OperatorWorkOrderController;
+use App\Http\Controllers\Api\ReportManagementController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -24,5 +25,5 @@ Route::get('/workorders', [OperatorWorkOrderController::class, 'index']);
 Route::get('/workorders/{id}', [OperatorWorkOrderController::class, 'show']);
 Route::put('/workorders/{id}', [OperatorWorkOrderController::class, 'update']);
 
-Route::middleware('auth:sanctum')->group(function () {
-});
+Route::get('/report/rekap', [ReportManagementController::class, 'reportRekapWorkOrder']);
+Route::get('/report/operator', [ReportManagementController::class, 'reportOperatorResult']);

@@ -9,11 +9,10 @@
     }
 
     .btn-custom.active {
-    border: 3px solid #000;
-    opacity: 0.9;
-    color: #000 !important;
-}
-
+        border: 3px solid #000;
+        opacity: 0.9;
+        color: #000 !important;
+    }
 </style>
 @stop
 
@@ -48,10 +47,10 @@
                                 <th>#</th>
                                 <th>Work Order Number</th>
                                 <th>Product</th>
-                                <th>Quantity</th>
                                 <th>Due Date</th>
                                 <th>Status</th>
                                 <th class="optional-column">Qty Progress</th>
+                                <th>Qty Target</th>
                                 <th class="optional-column">Start Production</th>
                                 <th class="optional-column">End Production</th>
                                 <th>Actions</th>
@@ -87,7 +86,6 @@
                         <select id="status" name="status" class="form-control" required>
                             <option value="Pending">Pending</option>
                             <option value="In Progress">In Progress</option>
-                            <option value="Completed">Completed</option>
                             <option value="Canceled">Canceled</option>
                         </select>
                     </div>
@@ -130,23 +128,44 @@
                     success: function (response) {
                         let data = [];
                         $.each(response.data, function (index, workOrder) {
+                            let actionButton = '';
+
+                            if (workOrder.status === 'Completed') {
+                                actionButton = '-';
+                            } else if (workOrder.status === 'In Progress') {
+                                if (workOrder.qty_progress == workOrder.quantity) {
+                                    actionButton = `<button class="btn btn-sm btn-success complete-btn"
+                                data-id="${workOrder.id}">
+                                <i class="fas fa-check"></i> Complete
+                            </button>`;
+                                } else {
+                                    actionButton = `<input type="number" min="0" max="${workOrder.quantity}" 
+                                class="form-control form-control-sm qty-progress-input" 
+                                data-id="${workOrder.id}" value="${workOrder.qty_progress ?? 0}">
+                            `;
+                                }
+                            } else {
+                                actionButton = `<button class="btn btn-sm btn-primary update-status-btn" 
+                            data-id="${workOrder.id}" data-status="${workOrder.status}" 
+                            data-toggle="modal" data-target="#updateStatusModal">
+                            Update Status
+                        </button>`;
+                            }
+
                             data.push([
                                 index + 1,
                                 workOrder.work_order_number,
                                 workOrder.product ? workOrder.product.product_name : '-',
-                                workOrder.quantity,
                                 workOrder.due_date,
                                 workOrder.status,
                                 workOrder.qty_progress ?? '-',
+                                workOrder.quantity,
                                 workOrder.start_production ?? '-',
-                                workOrder.end_production ?? '-',
-                                `<button class="btn btn-sm btn-primary update-status-btn" 
-                                data-id="${workOrder.id}" data-status="${workOrder.status}" 
-                                data-toggle="modal" data-target="#updateStatusModal">
-                                Update Status
-                            </button>`
+                                workOrder.finish_production ?? '-',
+                                actionButton
                             ]);
                         });
+
 
                         if (workOrderTable) {
                             workOrderTable.clear().rows.add(data).draw();
@@ -157,10 +176,10 @@
                                     { title: "#" },
                                     { title: "Work Order Number" },
                                     { title: "Product" },
-                                    { title: "Quantity" },
                                     { title: "Due Date" },
                                     { title: "Status" },
                                     { title: "Qty Progress", className: "optional-column" },
+                                    { title: "Qty Target" },
                                     { title: "Start Production", className: "optional-column" },
                                     { title: "End Production", className: "optional-column" },
                                     { title: "Actions" },
@@ -168,11 +187,12 @@
                             });
                         }
 
-                        if (status === 'In Progress') {
+                        if (['In Progress', 'Completed'].includes(status)) {
                             $('.optional-column').show();
                         } else {
                             $('.optional-column').hide();
                         }
+
                     },
                     error: function () {
                         showAlert('Failed to load data', 'danger');
@@ -183,12 +203,19 @@
 
             $(document).on('click', '.filter-btn', function () {
                 const status = $(this).data('status');
+                currentStatus = status;
+                setActiveButton(status);
                 loadWorkOrders(status);
             });
 
             $(document).on('click', '.update-status-btn', function () {
                 $('#work_order_id').val($(this).data('id'));
                 $('#status').val($(this).data('status'));
+            });
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
             });
 
             $('#updateStatusForm').submit(function (e) {
@@ -203,11 +230,49 @@
                     success: function () {
                         $('#updateStatusModal').modal('hide');
                         showAlert('Status updated successfully', 'success');
+                        $('.modal-backdrop').remove();
                         loadWorkOrders(currentStatus);
+                        setActiveButton(currentStatus); 
                     },
                     error: function (xhr) {
                         let errorMsg = xhr.responseJSON?.error || 'Failed to update status';
                         showAlert(errorMsg, 'danger');
+                    }
+                });
+            });
+
+            $(document).on('change', '.qty-progress-input', function () {
+                const id = $(this).data('id');
+                const qty_progress = $(this).val();
+
+                $.ajax({
+                    url: `/api-workorder/${id}/update-qty`,
+                    method: 'PUT',
+                    data: { qty_progress },
+                    success: function () {
+                        showAlert('Qty Progress updated', 'success');
+                        loadWorkOrders(currentStatus);
+                        setActiveButton(currentStatus); 
+                    },
+                    error: function () {
+                        showAlert('Failed to update Qty Progress', 'danger');
+                    }
+                });
+            });
+
+            $(document).on('click', '.complete-btn', function () {
+                const id = $(this).data('id');
+
+                $.ajax({
+                    url: `/api-workorder/${id}/update`,
+                    method: 'PUT',
+                    data: { status: 'Completed' },
+                    success: function () {
+                        showAlert('Work Order marked as Completed', 'success');
+                        loadWorkOrders(currentStatus);
+                    },
+                    error: function () {
+                        showAlert('Failed to complete Work Order', 'danger');
                     }
                 });
             });
@@ -222,6 +287,5 @@
         });
 
     </script>
-
     @stop
 @endsection

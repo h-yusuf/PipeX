@@ -9,15 +9,35 @@
             </a>
         </div>
     @else
-        <a href="javascript:void(0)" onclick="$('#logout-form').submit();">
-            <i class="fas fa-sign-out-alt m-r-5"></i>Logout
-        </a>
-        <form action="{{ route('logout') }}" method="POST" id="logout-form">
-            @csrf
-        </form>
-    @endif  
+        <div class="d-flex align-items-center">
+            <div class="d-flex justify-content-center align-items-center rounded-circle"
+                style="width: 36px; height: 36px; background-color: #ffffff33; margin-right: 12px;">
+                <i class="fas fa-user" style="color: #ffffff; font-size: 16px;"></i>
+            </div>
+            <div class="d-flex flex-column" style="margin-right: 12px;">
+                <span style="font-size: 14px; color: #ffffff !important; font-weight: 600;">
+                    {{ Auth()->user()->username }}
+                </span>
+                <span style="font-size: 12px; color: #dddddd;">
+                    {{ Auth()->user()->role->title }}
+                </span>
+            </div>
+
+            <!-- Logout -->
+            <a href="javascript:void(0)" onclick="$('#logout-form').submit();"
+                class="btn btn-sm btn-danger d-flex align-items-center" style="font-size: 12px; padding: 6px 10px;">
+                <i class="fas fa-sign-out-alt" style="margin-right: 6px;"></i> Logout
+            </a>
+
+            <form action="{{ route('logout') }}" method="POST" id="logout-form" style="display: none;">
+                @csrf
+            </form>
+        </div>
+    @endif
+
+
     <div class="collapse navbar-collapse">
-       
+
         <ul class="navbar-nav ml-auto">
 
             <li class="nav-item">

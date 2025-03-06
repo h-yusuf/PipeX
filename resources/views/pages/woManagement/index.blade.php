@@ -15,7 +15,7 @@
                     status.</span>
                 <button id="addWorkOrderButton" class="btn btn-info float-left mt-2" data-toggle="modal"
                     data-target="#workOrderModal">Add Work Order</button>
-                <form method="GET" action="{{ route('admin.workorder') }}" class="form-inline float-right">
+                <form method="GET" action="{{ route('admin.workorder') }}" class="form-inline float-right form-ajax">
                     <select name="status" class="form-control mr-2">
                         <option value="">All Status</option>
                         <option value="Pending" {{ request('status') == 'Pending' ? 'selected' : '' }}>Pending
@@ -71,7 +71,7 @@
                 <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
             </div>
             <div class="modal-body">
-                <form id="workOrderForm">
+                <form id="workOrderForm" class="form-ajax">
                     @csrf
 
                     <label>Product</label>
@@ -118,7 +118,7 @@
                 <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
             </div>
             <div class="modal-body">
-                <form id="updateWorkOrderForm" method="POST">
+                <form id="updateWorkOrderForm" method="POST" class="form-ajax">
                     @csrf
                     @method('PUT')
 
