@@ -44,15 +44,6 @@
                 </li>
             @endcan
 
-            @can('admin_panel_access')
-                <li class="nav-item">
-                    <a href="" class="nav-link active">
-                        <span class="pcoded-micon"><i class="fas fa-star fa-fw" aria-hidden="true"></i></i></span>
-                        <span class="pcoded-mtext">Achievement</span>
-                    </a>
-                </li>
-            @endcan
-
 
             <li class="nav-item pcoded-menu-caption">
                 <label>Management</label>
