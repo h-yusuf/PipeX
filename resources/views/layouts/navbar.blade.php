@@ -1,24 +1,23 @@
 <header class="navbar pcoded-header navbar-expand-lg navbar-light header-dark">
-    <div class="m-header">
-        <a class="mobile-menu" id="mobile-collapse" href="#!"><span></span></a>
-        <a href="#!" class="b-brand">
+    @if(auth()->user()->role_id != 3)
+        <div class="m-header">
+            <a class="mobile-menu" id="mobile-collapse" href="#!"><span></span></a>
+            <a href="#!" class="b-brand">
+            </a>
+            <a href="#!" class="mob-toggler">
+                <i class="feather icon-more-vertical"></i>
+            </a>
+        </div>
+    @else
+        <a href="javascript:void(0)" onclick="$('#logout-form').submit();">
+            <i class="fas fa-sign-out-alt m-r-5"></i>Logout
         </a>
-        <a href="#!" class="mob-toggler">
-            <i class="feather icon-more-vertical"></i>
-        </a>
-    </div>
+        <form action="{{ route('logout') }}" method="POST" id="logout-form">
+            @csrf
+        </form>
+    @endif  
     <div class="collapse navbar-collapse">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a href="#!" class="pop-search"><i class="feather icon-search"></i></a>
-                <div class="search-bar">
-                    <input type="text" class="form-control border-0 shadow-none" placeholder="Search here">
-                    <button type="button" class="close" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-            </li>
-        </ul>
+       
         <ul class="navbar-nav ml-auto">
 
             <li class="nav-item">

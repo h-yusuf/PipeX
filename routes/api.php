@@ -1,15 +1,7 @@
 <?php
 
-use App\Http\Controllers\Admin\ApprovalController;
-use App\Http\Controllers\Admin\ScheduleController;
-use App\Http\Controllers\Admin\Tables\DummyController;
-use App\Http\Controllers\api\apiGateway;
-use App\Http\Controllers\api\AutomasiSystem;
-use App\Http\Controllers\api\getAllApisController;
-use App\Http\Controllers\api\HugingFaceAicheduleAdvisorController;
-use App\Http\Controllers\api\OpenAIScheduleAdvisorController;
-use App\Http\Controllers\FailureController;
-use App\Services\StationService;
+
+use App\Http\Controllers\Api\OperatorWorkOrderController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -27,6 +19,10 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+// Operator Work Order APIs
+Route::get('/workorders', [OperatorWorkOrderController::class, 'index']);
+Route::get('/workorders/{id}', [OperatorWorkOrderController::class, 'show']);
+Route::put('/workorders/{id}', [OperatorWorkOrderController::class, 'update']);
 
-
-   
+Route::middleware('auth:sanctum')->group(function () {
+});

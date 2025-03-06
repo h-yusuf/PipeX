@@ -17,7 +17,10 @@ class CreateWorkOrdersTable extends Migration
             $table->id();
             $table->string('work_order_number')->unique();
             $table->foreignId('product_id')->constrained('products')->onDelete('cascade');
+            $table->integer('qty_progress');
             $table->integer('quantity');
+            $table->dateTime('start_production');
+            $table->dateTime('finish_production');
             $table->date('due_date');
             $table->enum('status', ['Pending', 'In Progress', 'Completed', 'Canceled'])->default('Pending');
             $table->foreignId('operator_id')->constrained('users')->onDelete('cascade');

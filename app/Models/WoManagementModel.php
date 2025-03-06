@@ -14,7 +14,10 @@ class WoManagementModel extends Model
     protected $fillable = [
         'work_order_number',
         'product_id',
+        'qty_progress',
         'quantity',
+        'start_production',
+        'finish_production',
         'due_date',
         'status',
         'operator_id',

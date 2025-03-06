@@ -3,6 +3,7 @@
 
 use App\Http\Controllers\Admin\ManagementProductController;
 use App\Http\Controllers\Admin\WorkOrderController;
+use App\Http\Controllers\Api\OperatorWorkOrderController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -31,7 +32,7 @@ Route::group(['prefix' => "admin", 'as' => 'admin.', 'namespace' => 'App\Http\Co
     Route::resource('/users', 'UserController');
     Route::resource('/roles', 'RoleController');
     Route::resource('/permissions', 'PermissionController')->except(['show']);
-   
+
     Route::resource('/products', 'ManagementProductController');
 
     // product start
@@ -51,6 +52,16 @@ Route::group(['prefix' => "admin", 'as' => 'admin.', 'namespace' => 'App\Http\Co
     // workorder end
 
 });
+
+// operator start
+Route::group(['namespace' => 'App\Http\Controllers\Admin', 'middleware' => ['auth', 'OperatorAccess']], function () {
+    Route::get('/operator', [WorkOrderController::class, 'operatorIndex'])->name('operator');
+    Route::get('/api-workorders', [OperatorWorkOrderController::class, 'index']);
+    Route::get('/api-workorder/{id}', [OperatorWorkOrderController::class, 'show']);
+    Route::put('/api-workorder/{id}', [OperatorWorkOrderController::class, 'update']);
+});
+// operator end
+
 
 Route::view('/offline', 'offline');
 

@@ -20,7 +20,7 @@ class RolePermissionTableSeeder extends Seeder
         
         Role::findOrFail(2)->permissions()->sync($admin_permissions->pluck('id'));
 
-        Role::findOrFail(3)->permissions()->sync([1]);
+        Role::findOrFail(3)->permissions()->sync([18]);
 
 
     }

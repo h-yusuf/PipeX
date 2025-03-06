@@ -58,9 +58,12 @@
         </div>
     </div>
 
-    <nav class="pcoded-navbar  ">
-        @include('layouts.sidebar')
-    </nav>
+    @if(auth()->user()->role_id != 3)
+        <nav class="pcoded-navbar">
+            @include('layouts.sidebar')
+        </nav>
+    @endif
+
     <!-- [ navigation menu ] end -->
 
     <!-- [ Header ] start -->
@@ -69,22 +72,27 @@
 
 
     <!-- [ Main Content ] start -->
-    <div class="pcoded-main-container">
-        <div class="pcoded-content">
+    @if(auth()->user()->role_id != 3)
+        <div class="pcoded-main-container">
+            <div class="pcoded-content">
 
-            <!-- [ Main Content ] start -->
-            <div class="row">
-                <!-- [ sample-page ] start -->
-                <div class="col-sm-12">
+                <!-- [ Main Content ] start -->
+                <div class="row">
+                    <!-- [ sample-page ] start -->
+                    <div class="col-sm-12">
 
-                    @yield('content')
+                        @yield('content')
 
+                    </div>
+                    <!-- [ sample-page ] end -->
                 </div>
-                <!-- [ sample-page ] end -->
+                <!-- [ Main Content ] end -->
+
             </div>
-            <!-- [ Main Content ] end -->
         </div>
-    </div>
+    @else
+        @yield('content')
+    @endif
 
 
 

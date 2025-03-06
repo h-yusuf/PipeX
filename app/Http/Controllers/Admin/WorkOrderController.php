@@ -42,8 +42,7 @@ class WorkOrderController extends Controller
                 })
                 ->addColumn('actions', function ($row) {
                     $editBtn = '<button class="btn btn-warning btn-sm btn-edit" data-id="' . $row->id . '" data-toggle="modal" data-target="#updateWorkOrderModal"><i class="fas fa-edit"></i></button>';
-                    $deleteForm = '<button type="button" class="btn btn-sm btn-danger btn-delete" data-id="' . $row->id . '"><i class="fas fa-trash"></i></button>
-';
+                    $deleteForm = '<button type="button" class="btn btn-sm btn-danger btn-delete" data-id="' . $row->id . '"><i class="fas fa-trash"></i></button>';
                     return $editBtn . ' ' . $deleteForm;
                 })
                 ->rawColumns(['status', 'actions'])
@@ -129,5 +128,13 @@ class WorkOrderController extends Controller
         $workOrder->delete();
 
         return response()->json(['success' => 'Work Order deleted successfully.']);
+    }
+
+    public function operatorIndex()
+    {
+        abort_if(Gate::denies('operator_management'), Response::HTTP_FORBIDDEN, 'Forbidden');
+
+        $data = ProductModel::orderBy('updated_at', 'desc')->get();
+        return view('pages.operator.index', compact('data'));
     }
 }

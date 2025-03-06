@@ -104,11 +104,6 @@
                         @can('wo_management')
                             <li><a href="{{ route('admin.workorder') }}">Work Order Management</a></li>
                         @endcan
-
-                        @can('operator_management')
-                            <li><a href="{{ route('admin.workorder') }}">Operator Management</a></li>
-                        @endcan
-
                     </ul>
                 </li>
             @endcanany

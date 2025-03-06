@@ -96,6 +96,7 @@ class PermissionTableSeeder extends Seeder
             ],
 
             [
+                // 18
                 'name' => 'operator_management',
             ],
 
