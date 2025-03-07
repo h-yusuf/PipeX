@@ -94,44 +94,66 @@ class HomeController extends Controller
             ->where('status', 'Completed')
             ->orderBy('created_at')
             ->get()
-            ->groupBy('product.name');
+            ->filter(fn($item) => $item->product && $item->product->product_name)
+            ->groupBy(function ($item) {
+                return optional($item->product)->product_name ?? 'Unknown';
+            });
 
-        // In Progress chart (all time) with products
+
         $inProgress = WoManagementModel::with('product')
             ->where('status', 'In Progress')
             ->orderBy('created_at')
             ->get()
-            ->groupBy('product.name');
+            ->filter(fn($item) => $item->product && $item->product->product_name)
+            ->groupBy(function ($item) {
+                return optional($item->product)->product_name ?? 'Unknown';
+            });
 
-        // Canceled chart (all time) with products
         $canceled = WoManagementModel::with('product')
             ->where('status', 'Canceled')
             ->orderBy('created_at')
             ->get()
-            ->groupBy('product.name');
+            ->filter(fn($item) => $item->product && $item->product->product_name)
+            ->groupBy(function ($item) {
+                return optional($item->product)->product_name ?? 'Unknown';
+            });
 
         // dd($canceled);
-        $completedChartData = $completed->map(function ($woList, $productName) {
+        $completedChartData = $completed->map(function ($items, $productName) {
             return [
                 'name' => $productName,
-                'data' => $woList->count()
+                'data' => [count($items)]
             ];
         })->values();
 
-        $inProgressChartData = $inProgress->map(function ($woList, $productName) {
+
+        $inProgressChartData = $inProgress->map(function ($items, $productName) {
             return [
                 'name' => $productName,
-                'data' => $woList->count()
+                'data' => [count($items)]
             ];
         })->values();
 
-        $canceledChartData = $canceled->map(function ($woList, $productName) {
+        $canceledChartData = $canceled->map(function ($items, $productName) {
             return [
                 'name' => $productName,
-                'data' => $woList->count()
+                'data' => [count($items)]
             ];
         })->values();
-// dd($completed);
+
+        $completedKeys = $completed->keys();
+        $inProgressKeys = $inProgress->keys();
+        $canceledKeys = $canceled->keys();
+
+
+        // dd($completedChartData);
+        // echo json_encode($completed);
+        // echo json_encode($completedChartData);
+
+
+
+        // exit;
+
         return view('admin.home', [
             'title' => 'Dashboard',
             'jumlah_user' => $jumlah_user,
@@ -142,9 +164,9 @@ class HomeController extends Controller
             'yearly' => $yearly,
             'monthly' => $monthly,
             'weekly' => $weekly,
-            'completed' => $completed,
-            'inProgress' => $inProgress,
-            'canceled' => $canceled,
+            'completedKeys' => $completedKeys,
+            'inProgressKeys' => $inProgressKeys,
+            'canceledKeys' => $canceledKeys,
             'completedChartData' => $completedChartData,
             'inProgressChartData' => $inProgressChartData,
             'canceledChartData' => $canceledChartData,
