@@ -1,18 +1,17 @@
 # Work Order Management System
 
-## Persyaratan Sistem
-Pastikan server atau komputer kamu memiliki:
-- PHP 7.3 atau lebih baru
+## system
+- "php": "^8.1",
 - Composer
-- MySQL atau database lain yang kompatibel
-- Laravel 8.1
+- MySQL database
+- Laravel Framework 8.83.27
 
 ## Setup Aplikasi
 
 ### 1. Clone Repository
 ```bash
-git clone https://github.com/username/repository-name.git
-cd repository-name
+git clone https://github.com/h-yusuf/PipeX.git
+cd PipeX
 ```
 
 ### 2. Install Dependencies
@@ -31,7 +30,7 @@ DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
 DB_DATABASE=pipx_management
-DB_USERNAME=username_mysql
+DB_USERNAME=root
 DB_PASSWORD=password_mysql
 ```
 
@@ -74,12 +73,11 @@ bisa login by email atau username atau NPK
 
 Selamat menggunakan aplikasi Work Order Management System! 🚀
 
+### Untuk QA 20000 data Work Order bisa seeder dengan 
+```bash
+php artisan db:seed --class=BigDataDummySeeder
+```
 
-# 📄 PipeX Management Documentation
-
-**PipeX Management** adalah sistem manajemen Work Order (WO) yang digunakan untuk mempermudah pengelolaan proses produksi, mulai dari pengaturan pengguna, operator, produk, hingga monitoring dan laporan Work Order.
-
----
 
 ## 🚀 Fitur-Fitur Utama
 
@@ -91,15 +89,11 @@ Selamat menggunakan aplikasi Work Order Management System! 🚀
 ### 👤 User Management  
 Mengelola data user yang memiliki akses ke sistem dengan berbagai peran dan tanggung jawab.
 
-![User Management](public/readme/users_management.png)
+- **Daftar User**  
+  ![User Management](public/readme/users_management.png)
 
----
-
-### 👥 Operator Management  
-Mengelola data operator yang bertanggung jawab menjalankan Work Order.
-
-![Operator Management](public/readme/operator.png)
-
+- **Tambah User**  
+  ![Tambah Role](public/readme/user_add.png)
 ---
 
 ### 🔐 Role & Permission Management  
@@ -131,12 +125,12 @@ Mengelola data produk yang terlibat dalam proses produksi Work Order.
 ---
 
 ### 📝 Work Order (WO) Management  
-Mengelola proses Work Order mulai dari input, update, monitoring hingga laporan.
+Production Manager Mengelola proses Work Order mulai dari Membuat work order serta plot operator, update, monitoring hingga laporan.
 
 - **Daftar Work Order**  
   ![Work Order Management](public/readme/wo_management.png)
 
-- **Tambah Work Order**  
+- **Plan And Plot Work Order**  
   ![Tambah Work Order](public/readme/wo_management_add.png)
 
 - **Update Work Order**  
@@ -153,16 +147,16 @@ Mengelola proses Work Order mulai dari input, update, monitoring hingga laporan.
 
 ---
 
-### 🎥 Demo Penggunaan  
-Cuplikan penggunaan PipeX Management dalam format video.
+### 👥 Operator   
+halamam Operator
 
-![Operator Demo](public/readme/operator.webm)
+![Operator Management](public/readme/operator.png)
+
+---
+
+### 🎥 Demo Penggunaan Pov Operator
+
+https://drive.google.com/file/d/12Nyw_W3AUdwYC82rFHLJxub-WGtWCeaa/view?usp=sharing
 
 ---
 
-## 📌 Catatan
-- Semua fitur dikelola via platform berbasis web.
-- Pastikan user memiliki role dan permission yang sesuai untuk mengakses setiap modul.
-- Dokumentasi ini dapat diperbarui seiring dengan pengembangan fitur selanjutnya.
-
----
