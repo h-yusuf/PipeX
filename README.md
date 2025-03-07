@@ -83,6 +83,11 @@ Selamat menggunakan aplikasi Work Order Management System! 🚀
 
 ## 🚀 Fitur-Fitur Utama
 
+### Dashboard 
+
+![User Management](public/readme/dashboard.png)
+
+---
 ### 👤 User Management  
 Mengelola data user yang memiliki akses ke sistem dengan berbagai peran dan tanggung jawab.
 
