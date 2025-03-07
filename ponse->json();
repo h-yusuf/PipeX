@@ -1,5 +1,0 @@
-[90m= [39m[34;4mIlluminate\Http\Client\Response[39;24m {#6323
-    +"[1mcookies[22m": [34;4mGuzzleHttp\Cookie\CookieJar[39;24m {#6220},
-    +"[1mtransferStats[22m": [34;4mGuzzleHttp\TransferStats[39;24m {#6316},
-  }
-
