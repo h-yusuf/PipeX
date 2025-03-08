@@ -77,6 +77,7 @@ Selamat menggunakan aplikasi Work Order Management System! 🚀
 ```bash
 php artisan db:seed --class=BigDataDummySeeder
 ```
+#### atau gunakan database pipx_management.sql di publict/databases/
 
 
 ## 🚀 Fitur-Fitur Utama
@@ -93,6 +94,7 @@ Mengelola data user yang memiliki akses ke sistem dengan berbagai peran dan tang
   ![User Management](public/readme/users_management.png)
 
 - **Tambah User**  
+user bisa di tambahkan dengan membuat user baru atau dengan menambahkan dari data employee yang sudah ada
   ![Tambah Role](public/readme/user_add.png)
 ---
 
